@@ -1,0 +1,37 @@
+package appiumTesting.appiumJava;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.remote.MobileCapabilityType;
+
+public class FirstStepInAppium {
+
+	public static void main(String[] args) throws MalformedURLException 
+	{
+		// AndroidDriver, IOSDriver
+		//
+		UiAutomator2Options options=new UiAutomator2Options();
+		//DesiredCapabilities options=new DesiredCapabilities();
+		//DesiredCapabilities capabilities=new DesiredCapabilities();
+		//capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
+		//capabilities.setCapability("device", "Android");
+		//capabilities.setCapability("deviceName", "Realme RMX2151");
+		//capabilities.setCapability("platformVersion","6.0.1");
+		//capabilities.setCapability("platformName", "Android");
+		//capabilities.setCapability("automationName", "UiAutomator2");
+		//capabilities.setCapability(MobileCapabilityType.APP, "D:\\Arun\\Selenium\\appiumJava\\src\\test\\java\\resources\\APKFiles\\resources\\ApiDemos-debug.apk");
+		options.setDeviceName("PixelArun");
+		//options.setApp("D:\\Arun\\Selenium\\appiumJava\\src\\test\\java\\resources\\APKFiles\\resources\\ApiDemos-debug.apk");
+		AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+		driver.get("https://www.google.com");
+		 // driver.quit();
+
+	}
+
+}

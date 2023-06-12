@@ -1,0 +1,31 @@
+package mypack;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestingInterSystemGmailAndYahoo 
+{
+
+	public static void main(String[] args) throws Exception
+	{
+		// Download Chrome Driver software
+		WebDriverManager.chromedriver().setup();
+		RemoteWebDriver driver=new ChromeDriver();
+		driver.get("https://www.gmail.com/");
+		Thread.sleep(4000);
+		driver.switchTo().activeElement().sendKeys("emailforselenium2",Keys.TAB,Keys.TAB,Keys.TAB);
+		Thread.sleep(2000);
+		driver.switchTo().activeElement().click();
+		//driver.switchTo().activeElement().sendKeys("Cust@247",Keys.TAB,Keys.TAB);
+		//Thread.sleep(5000);
+		//driver.switchTo().activeElement().click();
+		//driver.findElement(By.xpath("//input[contains(@aria-label,'your password')]")).sendKeys("Cust@247");
+		driver.findElement(By.xpath("//input[starts-with(@aria-label,'Enter')]")).sendKeys("Cust@247");
+
+	}
+
+}

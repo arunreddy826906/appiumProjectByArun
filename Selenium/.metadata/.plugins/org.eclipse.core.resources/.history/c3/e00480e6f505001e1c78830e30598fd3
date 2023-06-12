@@ -1,0 +1,40 @@
+package appiumTesting.appiumJava;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.ScreenOrientation;
+
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+
+public class LandscapeModeTestInAndroid {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		UiAutomator2Options options=new UiAutomator2Options();
+		options.setCapability("app", "D:\\\\Arun\\\\Selenium\\\\appiumJava\\\\src\\\\test\\\\java\\\\resources\\\\APKFiles\\\\resources\\\\ApiDemos-debug.apk");
+		options.setCapability("deviceName", "PixelArun");
+        AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.findElement(AppiumBy.accessibilityId("Preference")).click();
+		driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
+		driver.findElement(By.id("android:id/checkbox")).click();
+		//Enter into Landscape Mode
+		//DeviceRotation
+		//ScreenOrientation orientation=driver.getOrientation();
+		//System.out.println("Currentorientation:"+orientation);
+		driver.rotate(ScreenOrientation.LANDSCAPE);
+		driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click();
+		//driver.rotate(ScreenOrientation.PORTRAIT);
+		//Copy text to clipboard
+		driver.setClipboardText("Arun Kumar");
+		driver.findElement(By.id("android:id/edit")).sendKeys(driver.getClipboardText());
+		driver.findElement(By.id("android:id/button1")).click();
+		driver.quit();
+	}
+
+}

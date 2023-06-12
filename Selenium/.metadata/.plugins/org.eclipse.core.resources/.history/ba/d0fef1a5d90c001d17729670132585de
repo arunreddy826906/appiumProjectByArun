@@ -1,0 +1,24 @@
+package mypack;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestingInterSystemGmailAndYahoo 
+{
+
+	public static void main(String[] args) throws Exception
+	{
+		// Download Chrome Driver software
+		WebDriverManager.chromedriver().setup();
+		RemoteWebDriver driver=new ChromeDriver();
+		driver.get("https://login.yahoo.com/?.src=search&.intl=in&.lang=en-IN&.done=https%3A%2F%2Fin.search.yahoo.com%2F%3Ffr2%3Dinr&pspid=2114723002&activity=header-signin");
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//input[@id='login-username']")).sendKeys("seleniumy");
+		Thread.sleep(5000);
+	}
+
+}

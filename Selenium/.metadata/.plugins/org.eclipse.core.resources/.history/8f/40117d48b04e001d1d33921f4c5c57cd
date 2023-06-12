@@ -1,0 +1,40 @@
+package mypack;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CheckingAdropDownSingleSelectOrMultiSelect {
+
+	public static void main(String[] args) {
+		// Download google chrome driver software
+		WebDriverManager.chromedriver().setup();
+		//Create object to remote WebDriver
+         RemoteWebDriver driver=new ChromeDriver();
+         //launch site
+         driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select");
+         FluentWait<RemoteWebDriver> w=new FluentWait<RemoteWebDriver>(driver);
+         w.withTimeout(Duration.ofSeconds(30));
+         w.pollingEvery(Duration.ofMillis(1000));
+         //WebElement e=w.until(ExpectedConditions.visibilityOfElementLocated(By.id("cars")));
+        WebElement e= driver.findElement(By.id("cars"));
+         Select s=new Select(e);
+         if(s.isMultiple())
+         {
+        	 System.out.println("Dropdown is MultiSelect"); 
+         }
+         else
+         {
+        	 System.out.println("Dropdown is SingleSelect");
+         }
+	}
+
+}

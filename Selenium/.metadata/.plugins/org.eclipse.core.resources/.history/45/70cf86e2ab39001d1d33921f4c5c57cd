@@ -1,0 +1,42 @@
+package mypack;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestingGmail {
+
+	public static void main(String[] args) throws Exception
+	{
+		// Download ChromeDriver using WebDriverManager
+		WebDriverManager.chromedriver().setup();
+		RemoteWebDriver driver=new ChromeDriver();
+		driver.get("https://www.gmail.com/");
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//input[starts-with(@aria-label,'Email')]")).sendKeys("emailforselenium2");
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//span[text()='Next']/parent::button")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[starts-with(@aria-label,'Enter')]")).sendKeys("Cust@247");
+		driver.findElement(By.xpath("//span[text()='Next']/parent::button")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//div[contains(text(),'Compose')]")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.name("to")).sendKeys("arunreddy826@gmail.com");
+		Thread.sleep(5000);
+		driver.findElement(By.name("subjectbox")).sendKeys("Selenium test Email");
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//div[starts-with(@aria-label,'Message')]")).sendKeys("Hi Arun \nThis is Test Email sending through code");
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//div[text()='Send']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[contains(@aria-label,'Account')]")).click();
+		driver.switchTo().frame("account");
+		driver.findElement(By.xpath("//div[text()='Sign out']")).click();
+		//driver.close();
+
+	}
+
+}

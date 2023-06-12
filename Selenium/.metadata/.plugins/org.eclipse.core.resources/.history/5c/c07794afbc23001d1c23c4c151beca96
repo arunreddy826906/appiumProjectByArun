@@ -1,0 +1,14 @@
+package packagejava;
+
+public class PropertiesChecking1 extends PropertiesChecking
+{
+	PropertiesChecking obj=new PropertiesChecking();
+	public void method1()
+	{
+		System.out.println(obj.x);
+		//System.out.println(obj.y);
+		System.out.println(obj.k);
+		System.out.println(obj.z);
+	}
+
+}

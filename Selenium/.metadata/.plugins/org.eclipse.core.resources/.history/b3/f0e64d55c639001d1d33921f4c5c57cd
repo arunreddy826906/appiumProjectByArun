@@ -1,0 +1,38 @@
+package mypack;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestingGmailUnreadMailsList 
+{
+
+	public static void main(String[] args) throws Exception
+	{
+		// Download driver software of Chrome briwser
+		WebDriverManager.chromedriver().setup();
+		RemoteWebDriver driver=new ChromeDriver();
+		driver.get("https://www.gmail.com/");
+		driver.manage().window().maximize();
+		driver.findElement(By.name("identifier")).sendKeys("emailforselenium2");;
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//span[text()='Next']/parent::button")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("Cust@247");
+		driver.findElement(By.xpath("//span[text()='Next']/parent::button")).click();
+		Thread.sleep(5000);
+		//String e=driver.findElement(By.xpath("(//table)[6]/tbody/tr[1]")).getAttribute("class");
+		//Thread.sleep(5000);
+		//System.out.println(e);
+		while(true)
+		{
+			String s=driver.findElement(By.xpath("//div[@aria-label='Older']")).getAttribute("aria-disabled");
+			System.out.println(s);
+		}
+
+	}
+
+}

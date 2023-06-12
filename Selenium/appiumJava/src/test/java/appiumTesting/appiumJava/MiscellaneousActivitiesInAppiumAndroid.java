@@ -1,0 +1,42 @@
+package appiumTesting.appiumJava;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.android.options.UiAutomator2Options;
+
+public class MiscellaneousActivitiesInAppiumAndroid {
+
+	public static void main(String[] args) throws MalformedURLException, Exception {
+		// TODO Auto-generated method stub
+		UiAutomator2Options options=new UiAutomator2Options();
+		options.setCapability("app", "D:\\\\Arun\\\\Selenium\\\\appiumJava\\\\src\\\\test\\\\java\\\\resources\\\\APKFiles\\\\resources\\\\ApiDemos-debug.apk");
+		options.setCapability("deviceName", "PixelArun");
+        AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.findElement(AppiumBy.accessibilityId("Preference")).click();
+		driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
+		driver.findElement(By.id("android:id/checkbox")).click();
+		driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click();
+		driver.findElement(By.id("android:id/edit")).sendKeys("ArunKumar");
+		//Using keyPress method to click enter using KeyEvent class
+		driver.pressKey(new KeyEvent(AndroidKey.ENTER));
+		//Go Back using pressKey class
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		Thread.sleep(5000);
+		//Go to Home screen
+		driver.pressKey(new KeyEvent(AndroidKey.HOME));
+		Thread.sleep(5000);
+		//driver.quit();
+		//
+		
+	}
+
+}

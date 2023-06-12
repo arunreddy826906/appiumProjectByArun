@@ -1,0 +1,73 @@
+package mypack;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestingGmailUnreadMailsList 
+{
+
+	public static void main(String[] args) throws Exception
+	{
+		// Download driver software of Chrome briwser
+		WebDriverManager.chromedriver().setup();
+		RemoteWebDriver driver=new ChromeDriver();
+		driver.get("https://www.gmail.com/");
+		driver.manage().window().maximize();
+		driver.findElement(By.name("identifier")).sendKeys("emailforselenium2");;
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//span[text()='Next']/parent::button")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("Cust@247");
+		driver.findElement(By.xpath("//span[text()='Next']/parent::button")).click();
+		Thread.sleep(5000);
+		//String e=driver.findElement(By.xpath("(//table)[6]/tbody/tr[1]")).getAttribute("class");
+		//Thread.sleep(5000);
+		//System.out.println(e);
+		int tmails=0;
+		int unrm=0;
+		int rm=0;
+		while(true)
+		{
+			String s=driver.findElement(By.xpath("//div[@aria-label='Older']")).getAttribute("aria-disabled");
+			System.out.println(s);
+			List<WebElement> allmails=driver.findElements(By.xpath("(//table)[6]/tbody/tr"));
+			System.out.println(allmails.size());
+			for(WebElement mail:allmails)
+			{
+				WebElement e = mail.findElement(By.xpath("child::td[4]/div[1]"));
+				String msg=(String)driver.executeScript(
+		                "return(arguments[0].textContent);",e);
+				if(msg.startsWith("unread"))
+				{
+					unrm++;
+				}
+				else
+				{
+					rm++;
+				}
+			}
+			try 
+			{
+			
+			if(s.equals("true"))
+			{
+				break;
+			}
+			
+			}
+			catch(Exception ex)
+			{
+				driver.findElement(By.xpath("//div[@aria-label='Older']")).click();
+				Thread.sleep(5000);
+			}
+		}
+
+	}
+
+}

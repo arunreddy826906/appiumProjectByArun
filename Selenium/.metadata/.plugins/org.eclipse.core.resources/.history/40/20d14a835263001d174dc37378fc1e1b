@@ -1,0 +1,15 @@
+package testNgpractice;
+
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class OptionalAnnotationMethod 
+{
+@Test
+@Parameters({"firstname","lastname"})
+public void method1(@Optional("Arun") String a,@Optional("Reddy") String b)
+{
+	System.out.println(a+","+" "+b);
+}
+}
